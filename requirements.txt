@@ -1,0 +1,5 @@
+python-nmap==0.7.1
+Jinja2==3.1.2
+rich==13.7.1
+requests==2.31.0
+python-owasp-zap-v2.4
