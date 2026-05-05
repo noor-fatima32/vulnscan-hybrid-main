@@ -93,9 +93,21 @@ python main.py -t <target_ip> --web
 
 ## 🌐 Running OWASP ZAP (Required for `--web`)
 
-Before running a web scan, start ZAP in daemon mode:
+Before running a web scan, start ZAP in daemon mode. Choose the instructions for your operating system below.
 
-**Windows (PowerShell):**
+### 🐧 Linux
+
+```bash
+sudo apt update
+sudo apt install zaproxy
+which zaproxy
+zaproxy -daemon -port 8080 -config api.key=htk1hsa6su4urdfql7poujq653
+```
+
+> ℹ️ `which zaproxy` confirms the installation path before launching. If `zaproxy` is not found after install, try `zap.sh` or check `/usr/share/zaproxy/`.
+
+### 🪟 Windows (PowerShell)
+
 ```powershell
 $env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-25.0.2.10-hotspot"
 $env:Path = "$env:JAVA_HOME\bin;" + $env:Path
@@ -132,11 +144,11 @@ VulnScan Hybrid is intended strictly for **educational purposes** and **authoriz
 ## 👨‍💻 Project Creators
 
 ### 🔹 Hadi Faheem (CyberReaper)
-- Developer —VulnScan Hybrid
+- Developer — VulnScan Hybrid
 - GitHub: [CyberReaper-1](https://github.com/CyberReaper-1)
 
 ### 🔹 Noor Fatima
-- Developer —VulnScan Hybrid
+- Developer — VulnScan Hybrid
 - GitHub: [noor-fatima32](https://github.com/noor-fatima32)
 
 ---
