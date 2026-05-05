@@ -144,4 +144,4 @@ VulnScan Hybrid is intended strictly for **educational purposes** and **authoriz
 
 ## 🤝 About This Project
 
-VulnScan Hybrid is a collaborative initiative focused on exploring how modern vulnerability scanners operate internally. This tool reflects hands-on research, experimentation, and structured tool development in controlled lab environments — built as part of an active cybersecurity learning and internship journey.
+VulnScan Hybrid is a collaborative initiative focused on exploring how modern vulnerability scanners operate internally. This tool reflects hands-on research, experimentation, and structured tool development in controlled lab environments built as part of an active cybersecurity learning.
