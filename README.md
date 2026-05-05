@@ -132,11 +132,11 @@ VulnScan Hybrid is intended strictly for **educational purposes** and **authoriz
 ## 👨‍💻 Project Creators
 
 ### 🔹 Hadi Faheem (CyberReaper)
--  Developer —VulnScan Hybrid
+- Developer —VulnScan Hybrid
 - GitHub: [CyberReaper-1](https://github.com/CyberReaper-1)
 
 ### 🔹 Noor Fatima
--Developer —VulnScan Hybrid
+- Developer —VulnScan Hybrid
 - GitHub: [noor-fatima32](https://github.com/noor-fatima32)
 
 ---
