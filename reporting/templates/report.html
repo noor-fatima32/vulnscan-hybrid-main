@@ -86,7 +86,7 @@
         .scard {
             background: var(--bg2); border: 1px solid var(--border);
             border-radius: 12px; padding: 20px 22px;
-            position: relative; overflow: hidden; transition: border-color 0.2s;
+            position: relative; overflow: hidden;
         }
         .scard::before {
             content: ''; position: absolute;
@@ -96,7 +96,6 @@
         .scard.high::before     { background: #f97316; }
         .scard.medium::before   { background: #eab308; }
         .scard.low::before      { background: #22c55e; }
-        .scard:hover { border-color: var(--border2); }
         .scard .slabel { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.9px; margin-bottom: 10px; }
         .scard.critical .slabel { color: #ef4444; }
         .scard.high .slabel     { color: #f97316; }
@@ -111,7 +110,10 @@
 
         /* ── SECTIONS ── */
         .section { padding: 0 40px 48px; }
-        .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .section-head {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 16px;
+        }
         .sec-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); }
         .sec-accent { border-left: 3px solid #818cf8; padding-left: 10px; }
         .findings-pill {
@@ -124,43 +126,107 @@
         }
         .section-divider { border: none; border-top: 1px solid var(--border); margin: 0 40px 40px; }
 
-        /* ZAP sub-summary */
-        .zap-subsummary { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-        .zap-pill-count { font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 20px; }
+        /* ── ZAP sub-summary pills ── */
+        .zap-subsummary {
+            display: flex; gap: 10px; flex-wrap: wrap;
+            margin-bottom: 18px; align-items: center;
+        }
+        .zap-pill-count { font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: opacity .15s; }
+        .zap-pill-count:hover { opacity: .75; }
         .zap-pill-count.high   { background: rgba(249,115,22,0.12); color: #fb923c; border: 1px solid rgba(249,115,22,0.25); }
         .zap-pill-count.medium { background: rgba(234,179,8,0.12);  color: #facc15; border: 1px solid rgba(234,179,8,0.25); }
         .zap-pill-count.low    { background: rgba(34,197,94,0.1);   color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
         .zap-pill-count.info   { background: rgba(59,130,246,0.1);  color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
 
+        /* Search + expand/collapse controls */
+        .zap-controls {
+            display: flex; gap: 8px; align-items: center;
+            margin-bottom: 14px; flex-wrap: wrap;
+        }
+        .ctrl-btn {
+            font-size: 11px; padding: 5px 13px; border-radius: 6px;
+            border: 1px solid var(--border2); background: transparent;
+            color: var(--muted); cursor: pointer; font-family: inherit;
+            transition: color .15s, border-color .15s;
+        }
+        .ctrl-btn:hover { color: var(--text); border-color: #818cf8; }
+        .zap-search {
+            margin-left: auto;
+            background: var(--bg3); border: 1px solid var(--border2);
+            border-radius: 6px; padding: 5px 12px;
+            color: var(--text); font-size: 12px; font-family: inherit;
+            width: 220px; outline: none;
+        }
+        .zap-search:focus { border-color: var(--accent); }
+        .zap-search::placeholder { color: var(--muted2); }
+
+        /* ── ZAP severity group header row ── */
+        .zap-group-header td {
+            padding: 8px 18px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg3);
+        }
+        .zap-group-header.High   td { color: #fb923c; border-left: 3px solid #f97316; }
+        .zap-group-header.Medium td { color: #facc15; border-left: 3px solid #eab308; }
+        .zap-group-header.Low    td { color: #4ade80; border-left: 3px solid #22c55e; }
+        .zap-group-header.Info   td { color: #60a5fa; border-left: 3px solid #3b82f6; }
+        .zap-group-header .gh-label { display: flex; align-items: center; gap: 10px; }
+        .gh-count {
+            font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+            background: rgba(255,255,255,0.06);
+        }
+
         /* ── TABLE ── */
         .table-wrap { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
         table { width: 100%; border-collapse: collapse; }
         thead tr { background: var(--bg2); border-bottom: 1px solid var(--border); }
-        thead th { padding: 13px 18px; text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.7px; color: var(--muted); white-space: nowrap; }
-        tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
+        thead th {
+            padding: 13px 18px; text-align: left;
+            font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.7px;
+            color: var(--muted); white-space: nowrap;
+        }
+        tbody tr { border-bottom: 1px solid var(--border); transition: background .12s; }
         tbody tr:last-child { border-bottom: none; }
-        tbody tr:hover { background: rgba(255,255,255,0.02); }
-        tbody td { padding: 14px 18px; vertical-align: middle; font-size: 13.5px; color: #94a3b8; }
+        tbody tr:not(.zap-group-header):hover { background: rgba(255,255,255,.025); }
+        tbody td { padding: 13px 18px; vertical-align: middle; font-size: 13px; color: #94a3b8; }
 
-        .port-tag { font-family: monospace; font-size: 12px; font-weight: 600; background: var(--bg3); border: 1px solid var(--border2); color: #94a3b8; padding: 4px 10px; border-radius: 6px; }
+        /* ZAP finding row left-border by severity */
+        tr.zap-row.High   { border-left: 2px solid rgba(249,115,22,0.5); }
+        tr.zap-row.Medium { border-left: 2px solid rgba(234,179,8,0.4); }
+        tr.zap-row.Low    { border-left: 2px solid rgba(34,197,94,0.3); }
+        tr.zap-row.Info   { border-left: 2px solid rgba(59,130,246,0.3); }
+
+        .port-tag {
+            font-family: monospace; font-size: 12px; font-weight: 600;
+            background: var(--bg3); border: 1px solid var(--border2);
+            color: #94a3b8; padding: 4px 10px; border-radius: 6px;
+        }
         .svc-tag { font-family: monospace; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
         .svc-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
 
-        /* ── CVE CHIP with hover ── */
+        /* CVE chip */
         .cve-chip {
             display: inline-flex; align-items: center; gap: 6px;
             font-family: monospace; font-size: 12px; font-weight: 700; color: #60a5fa;
             background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.2);
             padding: 5px 12px; border-radius: 7px;
-            cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap;
-            position: relative;
+            cursor: pointer; transition: background .15s; white-space: nowrap;
         }
         .cve-chip:hover { background: rgba(59,130,246,0.18); border-color: rgba(59,130,246,0.5); }
-        .cve-icon { width: 8px; height: 8px; border-radius: 50%; background: #60a5fa; opacity: 0.7; flex-shrink: 0; }
+        .cve-icon { width: 8px; height: 8px; border-radius: 50%; background: #60a5fa; opacity: .7; flex-shrink: 0; }
 
         .cwe-link { color: #60a5fa; text-decoration: none; font-family: monospace; font-size: 12px; }
         .cwe-link:hover { text-decoration: underline; }
-        .url-cell { word-break: break-all; max-width: 200px; font-family: monospace; font-size: 11px; color: var(--muted); }
+
+        /* URL cell */
+        .url-cell {
+            word-break: break-all; max-width: 220px;
+            font-family: monospace; font-size: 11px; color: var(--muted);
+        }
+        /* Vuln name */
+        .vuln-name { font-size: 13px; color: #e2e8f0; font-weight: 500; }
+        .desc-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
         .badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 4px 11px; border-radius: 20px; white-space: nowrap; }
         .badge-Critical { background: rgba(239,68,68,0.12);  color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
@@ -169,9 +235,51 @@
         .badge-Low      { background: rgba(34,197,94,0.1);   color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
         .badge-Info     { background: rgba(59,130,246,0.1);  color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
 
-        .desc-text { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+        /* Expand/collapse toggle for ZAP rows */
+        .zap-toggle {
+            cursor: pointer; font-size: 11px;
+            color: var(--muted); background: var(--bg3);
+            border: 1px solid var(--border2); border-radius: 4px;
+            padding: 3px 8px; white-space: nowrap;
+            transition: color .15s, border-color .15s;
+        }
+        .zap-toggle:hover { color: #818cf8; border-color: rgba(99,102,241,.4); }
+
+        /* Detail row */
+        .zap-detail-row { display: none; }
+        .zap-detail-row.open { display: table-row; }
+        .zap-detail-panel {
+            background: #090e1a;
+            border-top: 1px solid var(--border);
+            padding: 16px 20px 18px;
+        }
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+        @media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr; } }
+        .detail-field { }
+        .detail-field.full { grid-column: 1/-1; }
+        .detail-label {
+            font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.9px; color: var(--muted2); margin-bottom: 5px;
+        }
+        .detail-val {
+            font-size: 12.5px; color: #94a3b8; line-height: 1.65;
+        }
+        .detail-val code {
+            font-family: monospace; font-size: 11px;
+            background: rgba(56,189,248,.06); color: #38bdf8;
+            padding: 1px 6px; border-radius: 3px; word-break: break-all;
+        }
+        .detail-val a { color: #60a5fa; text-decoration: none; font-size: 11px; }
+        .detail-val a:hover { text-decoration: underline; }
+        .solution-block {
+            background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.15);
+            border-radius: 6px; padding: 10px 14px;
+            font-size: 12px; color: #86efac; line-height: 1.6;
+        }
+
+        /* Clean / info states */
         .clean-state { padding: 48px; text-align: center; color: #4ade80; font-size: 14px; }
-        .info-state { padding: 32px 48px; text-align: center; color: var(--muted2); font-size: 13px; font-style: italic; }
+        .info-state  { padding: 32px 48px; text-align: center; color: var(--muted2); font-size: 13px; font-style: italic; }
         .info-state code { font-family: monospace; background: var(--bg3); padding: 2px 8px; border-radius: 4px; color: #60a5fa; }
 
         /* ── FOOTER ── */
@@ -192,71 +300,77 @@
             overflow: hidden;
         }
         #nvd-tip.show { display: block; }
-
         .tip-header {
             background: linear-gradient(90deg, rgba(59,130,246,0.15), rgba(99,102,241,0.08));
             border-bottom: 1px solid rgba(59,130,246,0.2);
             padding: 14px 16px;
             display: flex; align-items: center; justify-content: space-between; gap: 10px;
         }
-        .tip-cve-id { font-family: monospace; font-size: 14px; font-weight: 700; color: #60a5fa; letter-spacing: 0.3px; }
+        .tip-cve-id { font-family: monospace; font-size: 14px; font-weight: 700; color: #60a5fa; }
         .tip-score-wrap { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-        .tip-score {
-            font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px;
-            background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3);
-        }
+        .tip-score { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
         .tip-score.critical { background: rgba(239,68,68,0.15); color: #f87171; border-color: rgba(239,68,68,0.3); }
         .tip-score.high     { background: rgba(249,115,22,0.15); color: #fb923c; border-color: rgba(249,115,22,0.3); }
         .tip-score.medium   { background: rgba(234,179,8,0.15);  color: #fbbf24; border-color: rgba(234,179,8,0.3); }
         .tip-score.low      { background: rgba(34,197,94,0.1);   color: #4ade80; border-color: rgba(34,197,94,0.25); }
-
         .tip-body { padding: 14px 16px; }
-        .tip-desc {
-            font-size: 12px; line-height: 1.75; color: #94a3b8; margin-bottom: 14px;
-            padding: 10px 13px;
-            background: rgba(255,255,255,0.025);
-            border-radius: 8px;
-            border-left: 3px solid rgba(59,130,246,0.4);
-        }
+        .tip-desc { font-size: 12px; line-height: 1.75; color: #94a3b8; margin-bottom: 14px; padding: 10px 13px; background: rgba(255,255,255,0.025); border-radius: 8px; border-left: 3px solid rgba(59,130,246,0.4); }
         .tip-meta { display: flex; flex-wrap: wrap; gap: 6px; }
-        .tip-tag {
-            font-size: 10.5px; padding: 3px 10px; border-radius: 20px;
-            background: #0d1120; border: 1px solid #1a2236; color: #64748b; font-family: monospace;
-        }
+        .tip-tag { font-size: 10.5px; padding: 3px 10px; border-radius: 20px; background: #0d1120; border: 1px solid #1a2236; color: #64748b; font-family: monospace; }
         .tip-tag.pub  { color: #818cf8; border-color: rgba(99,102,241,0.3); }
         .tip-tag.vec  { color: #22d3ee; border-color: rgba(34,211,238,0.3); }
         .tip-tag.sev  { color: #fbbf24; border-color: rgba(251,191,36,0.3); }
-
-        .tip-status {
-            padding: 22px 16px; font-size: 12px; color: #475569;
-            text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .tip-err { color: #f87171; }
-
+        .tip-status   { padding: 22px 16px; font-size: 12px; color: #475569; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .tip-err      { color: #f87171; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .spinner {
-            width: 14px; height: 14px;
-            border: 2px solid rgba(59,130,246,0.15);
-            border-top-color: #3b82f6;
-            border-radius: 50%;
-            animation: spin 0.65s linear infinite;
-            flex-shrink: 0;
+        .spinner { width: 14px; height: 14px; border: 2px solid rgba(59,130,246,0.15); border-top-color: #3b82f6; border-radius: 50%; animation: spin .65s linear infinite; flex-shrink: 0; }
+
+        /* ── CVSS CALCULATOR ── */
+        .calc-toggle-btn {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px;
+            color: #818cf8; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25);
+            padding: 4px 10px; border-radius: 6px; cursor: pointer;
+            transition: background .15s; white-space: nowrap;
         }
+        .calc-toggle-btn:hover { background: rgba(99,102,241,0.18); border-color: rgba(99,102,241,.5); }
+        .calc-toggle-btn .arrow { transition: transform .2s; display: inline-block; }
+        .calc-toggle-btn.open .arrow { transform: rotate(180deg); }
+        .calc-row { display: none; }
+        .calc-row.open { display: table-row; }
+        .calc-panel { background: #090e1a; border-top: 1px solid var(--border); padding: 20px 24px; }
+        .calc-heading { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.9px; color: #818cf8; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .calc-heading::after { content: ''; flex: 1; height: 1px; background: rgba(99,102,241,0.2); }
+        .calc-score-row { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+        .calc-score-box { display: flex; flex-direction: column; align-items: center; background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2); border-radius: 10px; padding: 10px 20px; min-width: 110px; }
+        .calc-score-num { font-size: 28px; font-weight: 800; line-height: 1; letter-spacing: -1px; }
+        .calc-score-num.score-critical { color: #f87171; }
+        .calc-score-num.score-high     { color: #fb923c; }
+        .calc-score-num.score-medium   { color: #facc15; }
+        .calc-score-num.score-low      { color: #4ade80; }
+        .calc-score-num.score-none     { color: #64748b; }
+        .calc-score-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--muted2); margin-top: 3px; }
+        .calc-sev-badge { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; padding: 5px 14px; border-radius: 20px; }
+        .calc-vector-str { font-family: monospace; font-size: 10.5px; color: #38bdf8; background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.15); padding: 6px 12px; border-radius: 6px; word-break: break-all; flex: 1; }
+        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        @media (max-width: 900px) { .calc-grid { grid-template-columns: repeat(2,1fr); } }
+        .calc-metric { background: #0d1120; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+        .calc-metric label { display: block; font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted2); margin-bottom: 6px; }
+        .calc-metric select { width: 100%; background: var(--bg3); border: 1px solid var(--border2); color: #cbd5e1; font-size: 12px; padding: 6px 8px; border-radius: 6px; cursor: pointer; outline: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748b'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; }
+        .calc-metric select:focus { border-color: rgba(99,102,241,.5); }
+        .calc-reset-btn { margin-top: 14px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); background: transparent; border: 1px solid var(--border2); padding: 5px 14px; border-radius: 6px; cursor: pointer; transition: color .15s, border-color .15s; }
+        .calc-reset-btn:hover { color: #818cf8; border-color: rgba(99,102,241,.4); }
     </style>
 </head>
 <body>
 
 <!-- ── NVD TOOLTIP ── -->
 <div id="nvd-tip">
-    <div id="tip-load" class="tip-status">
-        <div class="spinner"></div> Fetching CVE data from NVD…
-    </div>
+    <div id="tip-load" class="tip-status"><div class="spinner"></div> Fetching CVE data from NVD…</div>
     <div id="tip-data" style="display:none">
         <div class="tip-header">
             <span class="tip-cve-id" id="tip-id"></span>
-            <div class="tip-score-wrap">
-                <span class="tip-score" id="tip-score"></span>
-            </div>
+            <div class="tip-score-wrap"><span class="tip-score" id="tip-score"></span></div>
         </div>
         <div class="tip-body">
             <div class="tip-desc" id="tip-desc"></div>
@@ -270,11 +384,7 @@
 <div class="topbar">
     <div class="topbar-brand">
         <div class="topbar-logo">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                <path d="M2 17l10 5 10-5"/>
-                <path d="M2 12l10 5 10-5"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
         <span>VulnScan-Hybrid</span>
     </div>
@@ -305,7 +415,7 @@
             </svg>
             <div class="ring-label">
                 <span class="ring-num">{{ vuln_count }}</span>
-                <span class="ring-text">Findings</span>
+                <span class="ring-text">CVE Finds</span>
             </div>
         </div>
     </div>
@@ -350,27 +460,71 @@
                     <th>Service</th>
                     <th>CVE ID</th>
                     <th>Severity</th>
+                    <th>CVSS Score</th>
                     <th>Description</th>
+                    <th>Calculator</th>
                 </tr>
             </thead>
             <tbody>
                 {% for vuln in vulnerabilities %}
+                {%- set idx = loop.index %}
+                {%- set cve_id = vuln.cve %}
+                {%- set av_val = vuln.cvss_AV  if vuln.cvss_AV  is defined else 'N' %}
+                {%- set ac_val = vuln.cvss_AC  if vuln.cvss_AC  is defined else 'L' %}
+                {%- set pr_val = vuln.cvss_PR  if vuln.cvss_PR  is defined else 'N' %}
+                {%- set ui_val = vuln.cvss_UI  if vuln.cvss_UI  is defined else 'N' %}
+                {%- set s_val  = vuln.cvss_S   if vuln.cvss_S   is defined else 'U' %}
+                {%- set c_val  = vuln.cvss_C   if vuln.cvss_C   is defined else 'L' %}
+                {%- set i_val  = vuln.cvss_I   if vuln.cvss_I   is defined else 'L' %}
+                {%- set a_val  = vuln.cvss_A   if vuln.cvss_A   is defined else 'L' %}
+                {%- set base_score = vuln.cvss_score if vuln.cvss_score is defined else '' %}
                 <tr>
                     <td><span class="port-tag">{{ vuln.port }}</span></td>
+                    <td><span class="svc-tag"><span class="svc-dot"></span>{{ vuln.service }}</span></td>
                     <td>
-                        <span class="svc-tag">
-                            <span class="svc-dot"></span>
-                            {{ vuln.service }}
-                        </span>
-                    </td>
-                    <td>
-                        <span class="cve-chip" data-cve="{{ vuln.cve }}">
-                            <span class="cve-icon"></span>
-                            {{ vuln.cve }}
+                        <span class="cve-chip" data-cve="{{ cve_id }}">
+                            <span class="cve-icon"></span>{{ cve_id }}
                         </span>
                     </td>
                     <td><span class="badge badge-{{ vuln.severity }}">{{ vuln.severity }}</span></td>
+                    <td>
+                        {% if base_score %}
+                        <span class="badge badge-{{ vuln.severity }}" style="font-size:13px;padding:4px 13px;">{{ base_score }}</span>
+                        {% else %}<span style="color:var(--muted2);font-size:12px;">N/A</span>{% endif %}
+                    </td>
                     <td><span class="desc-text">{{ vuln.description }}</span></td>
+                    <td>
+                        <button class="calc-toggle-btn" onclick="toggleCalc('calc-{{ idx }}')" id="btn-calc-{{ idx }}">
+                            ⊞ CVSS Calc <span class="arrow">▾</span>
+                        </button>
+                    </td>
+                </tr>
+                <!-- CVSS calculator row -->
+                <tr class="calc-row" id="calc-{{ idx }}">
+                    <td colspan="7" style="padding:0;">
+                        <div class="calc-panel">
+                            <div class="calc-heading">CVSS v3.1 Calculator — {{ cve_id }}</div>
+                            <div class="calc-score-row">
+                                <div class="calc-score-box">
+                                    <span class="calc-score-num" id="score-num-{{ idx }}">{{ base_score if base_score else '—' }}</span>
+                                    <span class="calc-score-label">Base Score</span>
+                                </div>
+                                <span class="calc-sev-badge badge" id="score-sev-{{ idx }}">{{ vuln.severity }}</span>
+                                <span class="calc-vector-str" id="score-vec-{{ idx }}">{{ vuln.cvss_vector if vuln.cvss_vector is defined else 'N/A' }}</span>
+                            </div>
+                            <div class="calc-grid">
+                                <div class="calc-metric"><label>Attack Vector (AV)</label><select onchange="recalc({{ idx }})" id="m-AV-{{ idx }}">{% for val,lbl in cvss_options.AV %}<option value="{{ val }}" {% if val==av_val %}selected{% endif %}>{{ lbl }}</option>{% endfor %}</select></div>
+                                <div class="calc-metric"><label>Attack Complexity (AC)</label><select onchange="recalc({{ idx }})" id="m-AC-{{ idx }}">{% for val,lbl in cvss_options.AC %}<option value="{{ val }}" {% if val==ac_val %}selected{% endif %}>{{ lbl }}</option>{% endfor %}</select></div>
+                                <div class="calc-metric"><label>Privileges Required (PR)</label><select onchange="recalc({{ idx }})" id="m-PR-{{ idx }}">{% for val,lbl in cvss_options.PR %}<option value="{{ val }}" {% if val==pr_val %}selected{% endif %}>{{ lbl }}</option>{% endfor %}</select></div>
+                                <div class="calc-metric"><label>User Interaction (UI)</label><select onchange="recalc({{ idx }})" id="m-UI-{{ idx }}">{% for val,lbl in cvss_options.UI %}<option value="{{ val }}" {% if val==ui_val %}selected{% endif %}>{{ lbl }}</option>{% endfor %}</select></div>
+                                <div class="calc-metric"><label>Scope (S)</label><select onchange="recalc({{ idx }})" id="m-S-{{ idx }}">{% for val,lbl in cvss_options.S %}<option value="{{ val }}" {% if val==s_val %}selected{% endif %}>{{ lbl }}</option>{% endfor %}</select></div>
+                                <div class="calc-metric"><label>Confidentiality (C)</label><select onchange="recalc({{ idx }})" id="m-C-{{ idx }}">{% for val,lbl in cvss_options.C %}<option value="{{ val }}" {% if val==c_val %}selected{% endif %}>{{ lbl }}</option>{% endfor %}</select></div>
+                                <div class="calc-metric"><label>Integrity (I)</label><select onchange="recalc({{ idx }})" id="m-I-{{ idx }}">{% for val,lbl in cvss_options.I %}<option value="{{ val }}" {% if val==i_val %}selected{% endif %}>{{ lbl }}</option>{% endfor %}</select></div>
+                                <div class="calc-metric"><label>Availability (A)</label><select onchange="recalc({{ idx }})" id="m-A-{{ idx }}">{% for val,lbl in cvss_options.A %}<option value="{{ val }}" {% if val==a_val %}selected{% endif %}>{{ lbl }}</option>{% endfor %}</select></div>
+                            </div>
+                            <button class="calc-reset-btn" onclick="resetCalc({{ idx }},'{{ av_val }}','{{ ac_val }}','{{ pr_val }}','{{ ui_val }}','{{ s_val }}','{{ c_val }}','{{ i_val }}','{{ a_val }}')">↺ Reset to original values</button>
+                        </div>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -383,7 +537,11 @@
 
 <hr class="section-divider">
 
-<!-- ── ZAP WEB FINDINGS ── -->
+<!-- ════════════════════════════════════════════════════════════════════════
+     ZAP WEB FINDINGS
+     Sorted High → Medium → Low → Info with collapsible group headers
+     and per-row expand for description / solution / evidence
+════════════════════════════════════════════════════════════════════════ -->
 <div class="section">
     <div class="section-head">
         <span class="sec-title sec-accent">ZAP Web Vulnerability Findings</span>
@@ -391,39 +549,143 @@
     </div>
 
     {% if zap_count > 0 %}
+
+    <!-- Sub-summary pills (clickable to scroll to group) -->
     <div class="zap-subsummary">
-        <span class="zap-pill-count high">High: {{ zap_high_count }}</span>
-        <span class="zap-pill-count medium">Medium: {{ zap_medium_count }}</span>
-        <span class="zap-pill-count low">Low: {{ zap_low_count }}</span>
-        <span class="zap-pill-count info">Info: {{ zap_info_count }}</span>
+        {% if zap_high_count   > 0 %}<span class="zap-pill-count high"   onclick="scrollToGroup('zap-group-High')">🔴 High: {{ zap_high_count }}</span>{% endif %}
+        {% if zap_medium_count > 0 %}<span class="zap-pill-count medium" onclick="scrollToGroup('zap-group-Medium')">🟠 Medium: {{ zap_medium_count }}</span>{% endif %}
+        {% if zap_low_count    > 0 %}<span class="zap-pill-count low"    onclick="scrollToGroup('zap-group-Low')">🟡 Low: {{ zap_low_count }}</span>{% endif %}
+        {% if zap_info_count   > 0 %}<span class="zap-pill-count info"   onclick="scrollToGroup('zap-group-Info')">🔵 Info: {{ zap_info_count }}</span>{% endif %}
     </div>
+
+    <!-- Controls: expand/collapse + search -->
+    <div class="zap-controls">
+        <button class="ctrl-btn" onclick="zapExpandAll()">▼ Expand All</button>
+        <button class="ctrl-btn" onclick="zapCollapseAll()">▲ Collapse All</button>
+        <button class="ctrl-btn" onclick="zapToggleGroup('High')">High group</button>
+        <button class="ctrl-btn" onclick="zapToggleGroup('Medium')">Medium group</button>
+        <button class="ctrl-btn" onclick="zapToggleGroup('Low')">Low group</button>
+        <button class="ctrl-btn" onclick="zapToggleGroup('Info')">Info group</button>
+        <input class="zap-search" id="zap-search" placeholder="🔍 Search findings…" oninput="zapSearch(this.value)">
+    </div>
+
     <div class="table-wrap">
-        <table>
+        <table id="zap-table">
             <thead>
                 <tr>
-                    <th>Target</th>
+                    <th style="width:140px">Target</th>
                     <th>Vulnerability</th>
-                    <th>Severity</th>
-                    <th>URL</th>
-                    <th>Parameter</th>
-                    <th>CWE</th>
-                    <th>Description</th>
+                    <th style="width:96px">Severity</th>
+                    <th style="width:200px">URL</th>
+                    <th style="width:110px">Param</th>
+                    <th style="width:90px">CWE</th>
+                    <th style="width:80px">Details</th>
                 </tr>
             </thead>
             <tbody>
-                {% for finding in zap_findings %}
-                <tr>
-                    <td><span class="port-tag">{{ finding.target }}</span></td>
-                    <td style="font-size:13px; color:#e2e8f0; font-weight:500;">{{ finding.name }}</td>
-                    <td><span class="badge badge-{{ finding.severity }}">{{ finding.severity }}</span></td>
-                    <td class="url-cell">{{ finding.url }}</td>
-                    <td><span class="svc-tag">{{ finding.param or '—' }}</span></td>
+                {#
+                   Findings arrive pre-sorted High→Medium→Low→Info from report_generator.py.
+                   We walk through and emit a group-header row whenever the severity changes.
+                #}
+                {%- set ns = namespace(cur_sev='') %}
+                {%- set sev_icons = {'High':'🔴','Medium':'🟠','Low':'🟡','Info':'🔵'} %}
+                {%- set sev_counts = {'High': zap_high_count, 'Medium': zap_medium_count, 'Low': zap_low_count, 'Info': zap_info_count} %}
+
+                {% for f in zap_findings %}
+                {%- set sev = f.severity %}
+                {%- set fidx = loop.index %}
+
+                {# Emit a group header when severity changes #}
+                {% if sev != ns.cur_sev %}
+                {%- set ns.cur_sev = sev %}
+                <tr class="zap-group-header {{ sev }}" id="zap-group-{{ sev }}" data-group="{{ sev }}">
+                    <td colspan="7">
+                        <div class="gh-label">
+                            {{ sev_icons.get(sev,'•') }}
+                            {{ sev | upper }}
+                            <span class="gh-count">{{ sev_counts.get(sev, 0) }} findings</span>
+                            <span style="margin-left:auto;font-size:10px;color:var(--muted2);cursor:pointer" onclick="zapToggleGroup('{{ sev }}')">▲ collapse</span>
+                        </div>
+                    </td>
+                </tr>
+                {% endif %}
+
+                <!-- Finding row -->
+                <tr class="zap-row {{ sev }}" data-sev="{{ sev }}" data-idx="{{ fidx }}">
+                    <td><span class="port-tag">{{ f.target | truncate(30, true, '…') }}</span></td>
+                    <td><span class="vuln-name">{{ f.name }}</span></td>
+                    <td><span class="badge badge-{{ sev }}">{{ sev }}</span></td>
+                    <td class="url-cell" title="{{ f.url }}">{{ f.url_display }}</td>
+                    <td><span class="svc-tag">{{ f.param or '—' }}</span></td>
                     <td>
-                        {% if finding.cweid %}
-                        <a class="cwe-link" href="https://cwe.mitre.org/data/definitions/{{ finding.cweid }}.html" target="_blank">CWE-{{ finding.cweid }}</a>
+                        {% if f.cweid %}
+                        <a class="cwe-link" href="https://cwe.mitre.org/data/definitions/{{ f.cweid }}.html" target="_blank" rel="noopener">CWE-{{ f.cweid }}</a>
                         {% else %}—{% endif %}
                     </td>
-                    <td><span class="desc-text">{{ finding.description[:300] }}{% if finding.description|length > 300 %}…{% endif %}</span></td>
+                    <td>
+                        <span class="zap-toggle" onclick="zapToggleDetail('zd-{{ fidx }}', this)">+ details</span>
+                    </td>
+                </tr>
+
+                <!-- Detail row (hidden by default) -->
+                <tr class="zap-detail-row" id="zd-{{ fidx }}" data-sev="{{ sev }}">
+                    <td colspan="7" style="padding:0;">
+                        <div class="zap-detail-panel">
+                            <div class="detail-grid">
+                                {% if f.description %}
+                                <div class="detail-field full">
+                                    <div class="detail-label">Description</div>
+                                    <div class="detail-val">{{ f.description }}</div>
+                                </div>
+                                {% endif %}
+
+                                {% if f.solution %}
+                                <div class="detail-field full">
+                                    <div class="detail-label">Remediation</div>
+                                    <div class="solution-block">{{ f.solution }}</div>
+                                </div>
+                                {% endif %}
+
+                                {% if f.url %}
+                                <div class="detail-field">
+                                    <div class="detail-label">Full URL</div>
+                                    <div class="detail-val"><code>{{ f.url }}</code></div>
+                                </div>
+                                {% endif %}
+
+                                {% if f.param %}
+                                <div class="detail-field">
+                                    <div class="detail-label">Parameter</div>
+                                    <div class="detail-val"><code>{{ f.param }}</code></div>
+                                </div>
+                                {% endif %}
+
+                                {% if f.reference %}
+                                <div class="detail-field full">
+                                    <div class="detail-label">References</div>
+                                    <div class="detail-val">
+                                        {% for line in f.reference.splitlines() %}
+                                        {% if line.strip().startswith('http') %}
+                                        <a href="{{ line.strip() }}" target="_blank" rel="noopener">{{ line.strip()[:90] }}{% if line.strip()|length > 90 %}…{% endif %}</a><br>
+                                        {% elif line.strip() %}{{ line.strip() }}<br>{% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if f.cweid or f.wascid or f.pluginid %}
+                                <div class="detail-field">
+                                    <div class="detail-label">Identifiers</div>
+                                    <div class="detail-val">
+                                        {% if f.cweid %}CWE-{{ f.cweid }}&nbsp; {% endif %}
+                                        {% if f.wascid %}WASC-{{ f.wascid }}&nbsp; {% endif %}
+                                        {% if f.pluginid %}Plugin {{ f.pluginid }}{% endif %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -431,14 +693,10 @@
     </div>
 
     {% elif zap_count == 0 and zap_findings is defined %}
-    <div class="table-wrap">
-        <div class="clean-state">ZAP scan found no web vulnerabilities.</div>
-    </div>
+    <div class="table-wrap"><div class="clean-state">ZAP scan found no web vulnerabilities.</div></div>
     {% else %}
     <div class="table-wrap">
-        <div class="info-state">
-            ZAP web scan was not enabled. Re-run with <code>--web</code> to include web vulnerability scanning.
-        </div>
+        <div class="info-state">ZAP web scan was not enabled. Re-run with <code>--web</code> to include web vulnerability scanning.</div>
     </div>
     {% endif %}
 </div>
@@ -453,126 +711,98 @@
 </div>
 
 <script>
-    const cache = {};
-    const tip     = document.getElementById('nvd-tip');
-    const tipLoad = document.getElementById('tip-load');
-    const tipData = document.getElementById('tip-data');
-    const tipErr  = document.getElementById('tip-err');
-    const tipId   = document.getElementById('tip-id');
-    const tipScore= document.getElementById('tip-score');
-    const tipDesc = document.getElementById('tip-desc');
-    const tipMeta = document.getElementById('tip-meta');
-    let hideT, activeChip = null;
+/* ══════════════════════════════════════════════════════════════════
+   NVD TOOLTIP
+══════════════════════════════════════════════════════════════════ */
+const cache={},tip=document.getElementById('nvd-tip'),tipLoad=document.getElementById('tip-load'),tipData=document.getElementById('tip-data'),tipErr=document.getElementById('tip-err'),tipId=document.getElementById('tip-id'),tipScore=document.getElementById('tip-score'),tipDesc=document.getElementById('tip-desc'),tipMeta=document.getElementById('tip-meta');
+let hideT,activeChip=null;
+function place(e){const p=18,w=400,h=260;let x=e.clientX+p,y=e.clientY+p;if(x+w>window.innerWidth-10)x=e.clientX-w-p;if(y+h>window.innerHeight-10)y=e.clientY-h-p;tip.style.left=x+'px';tip.style.top=y+'px';}
+function resetTip(){tipLoad.style.display='flex';tipData.style.display='none';tipErr.style.display='none';}
+function scoreClass(s){if(!s)return'';if(s>=9)return'critical';if(s>=7)return'high';if(s>=4)return'medium';return'low';}
+function renderTip(d){tipLoad.style.display='none';tipErr.style.display='none';tipData.style.display='block';tipId.textContent=d.id;if(d.score){tipScore.textContent='CVSS '+d.score;tipScore.className='tip-score '+scoreClass(d.score);}else{tipScore.textContent='No score';tipScore.className='tip-score';}tipDesc.textContent=d.description||'No description available.';tipMeta.innerHTML='';if(d.published)tipMeta.innerHTML+=`<span class="tip-tag pub">Published: ${d.published}</span>`;if(d.severity)tipMeta.innerHTML+=`<span class="tip-tag sev">${d.severity}</span>`;if(d.vector)tipMeta.innerHTML+=`<span class="tip-tag vec">${d.vector}</span>`;if(d.cwe)tipMeta.innerHTML+=`<span class="tip-tag">CWE-${d.cwe}</span>`;}
+function showError(msg){tipLoad.style.display='none';tipData.style.display='none';tipErr.style.display='flex';tipErr.textContent=msg;}
+async function fetchCVE(id){if(cache[id])return cache[id];const r=await fetch(`https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=${id}`);if(!r.ok)throw new Error('NVD API error '+r.status);const j=await r.json(),item=j.vulnerabilities?.[0]?.cve;if(!item)throw new Error('CVE not found');const desc=(item.descriptions||[]).find(d=>d.lang==='en')?.value||'',m=item.metrics||{},cvss=m.cvssMetricV31?.[0]?.cvssData||m.cvssMetricV30?.[0]?.cvssData||m.cvssMetricV2?.[0]?.cvssData,cweId=item.weaknesses?.[0]?.description?.find(d=>d.lang==='en')?.value?.replace('CWE-','')||null,out={id,description:desc,score:cvss?.baseScore||null,severity:cvss?.baseSeverity||null,vector:cvss?.vectorString||null,published:item.published?item.published.split('T')[0]:null,cwe:cweId};cache[id]=out;return out;}
+document.querySelectorAll('.cve-chip').forEach(chip=>{chip.addEventListener('mouseenter',async e=>{clearTimeout(hideT);activeChip=chip;tip.classList.add('show');place(e);resetTip();try{const d=await fetchCVE(chip.dataset.cve);if(activeChip===chip)renderTip(d);}catch(err){if(activeChip===chip)showError('Could not load '+chip.dataset.cve);}});chip.addEventListener('mousemove',place);chip.addEventListener('mouseleave',()=>{activeChip=null;hideT=setTimeout(()=>tip.classList.remove('show'),250);});});
 
-    /* ── position tooltip near cursor ── */
-    function place(e) {
-        const pad = 18, w = 400, h = 260;
-        let x = e.clientX + pad, y = e.clientY + pad;
-        if (x + w > window.innerWidth  - 10) x = e.clientX - w - pad;
-        if (y + h > window.innerHeight - 10) y = e.clientY - h - pad;
-        tip.style.left = x + 'px';
-        tip.style.top  = y + 'px';
-    }
+/* ══════════════════════════════════════════════════════════════════
+   ZAP TABLE CONTROLS
+══════════════════════════════════════════════════════════════════ */
 
-    function reset() {
-        tipLoad.style.display = 'flex';
-        tipData.style.display = 'none';
-        tipErr.style.display  = 'none';
-    }
+// Toggle individual detail row
+function zapToggleDetail(id, btn) {
+    const row = document.getElementById(id);
+    if (!row) return;
+    const open = row.classList.toggle('open');
+    btn.textContent = open ? '− hide' : '+ details';
+}
 
-    function scoreClass(score) {
-        if (!score) return '';
-        if (score >= 9.0) return 'critical';
-        if (score >= 7.0) return 'high';
-        if (score >= 4.0) return 'medium';
-        return 'low';
-    }
+// Expand all detail rows
+function zapExpandAll() {
+    document.querySelectorAll('.zap-detail-row').forEach(r => r.classList.add('open'));
+    document.querySelectorAll('.zap-toggle').forEach(b => b.textContent = '− hide');
+}
 
-    function render(d) {
-        tipLoad.style.display = 'none';
-        tipErr.style.display  = 'none';
-        tipData.style.display = 'block';
+// Collapse all detail rows
+function zapCollapseAll() {
+    document.querySelectorAll('.zap-detail-row').forEach(r => r.classList.remove('open'));
+    document.querySelectorAll('.zap-toggle').forEach(b => b.textContent = '+ details');
+}
 
-        tipId.textContent = d.id;
-
-        if (d.score) {
-            tipScore.textContent = 'CVSS ' + d.score;
-            tipScore.className   = 'tip-score ' + scoreClass(d.score);
-        } else {
-            tipScore.textContent = 'No score';
-            tipScore.className   = 'tip-score';
-        }
-
-        tipDesc.textContent = d.description || 'No description available.';
-
-        tipMeta.innerHTML = '';
-        if (d.published) tipMeta.innerHTML += `<span class="tip-tag pub">Published: ${d.published}</span>`;
-        if (d.severity)  tipMeta.innerHTML += `<span class="tip-tag sev">${d.severity}</span>`;
-        if (d.vector)    tipMeta.innerHTML += `<span class="tip-tag vec">${d.vector}</span>`;
-        if (d.cwe)       tipMeta.innerHTML += `<span class="tip-tag">CWE-${d.cwe}</span>`;
-    }
-
-    function showError(msg) {
-        tipLoad.style.display = 'none';
-        tipData.style.display = 'none';
-        tipErr.style.display  = 'flex';
-        tipErr.textContent    = msg;
-    }
-
-    async function fetchCVE(id) {
-        if (cache[id]) return cache[id];
-
-        const r = await fetch(`https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=${id}`);
-        if (!r.ok) throw new Error('NVD API error ' + r.status);
-
-        const j    = await r.json();
-        const item = j.vulnerabilities?.[0]?.cve;
-        if (!item) throw new Error('CVE not found in NVD');
-
-        const desc = (item.descriptions || []).find(d => d.lang === 'en')?.value || '';
-        const m    = item.metrics || {};
-        const cvss = m.cvssMetricV31?.[0]?.cvssData
-                  || m.cvssMetricV30?.[0]?.cvssData
-                  || m.cvssMetricV2?.[0]?.cvssData;
-
-        /* extract CWE */
-        const cweId = item.weaknesses?.[0]?.description?.find(d => d.lang === 'en')?.value?.replace('CWE-', '') || null;
-
-        const out = {
-            id:          id,
-            description: desc,
-            score:       cvss?.baseScore   || null,
-            severity:    cvss?.baseSeverity|| null,
-            vector:      cvss?.vectorString|| null,
-            published:   item.published ? item.published.split('T')[0] : null,
-            cwe:         cweId
-        };
-        cache[id] = out;
-        return out;
-    }
-
-    document.querySelectorAll('.cve-chip').forEach(chip => {
-        chip.addEventListener('mouseenter', async e => {
-            clearTimeout(hideT);
-            activeChip = chip;
-            tip.classList.add('show');
-            place(e);
-            reset();
-            try {
-                const data = await fetchCVE(chip.dataset.cve);
-                if (activeChip === chip) render(data);
-            } catch (err) {
-                if (activeChip === chip) showError('Could not load data for ' + chip.dataset.cve);
-            }
-        });
-
-        chip.addEventListener('mousemove', place);
-
-        chip.addEventListener('mouseleave', () => {
-            activeChip = null;
-            hideT = setTimeout(() => tip.classList.remove('show'), 250);
-        });
+// Toggle an entire severity group (hide/show all rows for that sev)
+const groupState = {};
+function zapToggleGroup(sev) {
+    groupState[sev] = !groupState[sev]; // true = collapsed
+    const collapsed = groupState[sev];
+    // finding rows + their detail rows
+    document.querySelectorAll(`.zap-row[data-sev="${sev}"], .zap-detail-row[data-sev="${sev}"]`).forEach(r => {
+        r.style.display = collapsed ? 'none' : '';
     });
+    // update the collapse link text inside the group header
+    const hdr = document.getElementById(`zap-group-${sev}`);
+    if (hdr) {
+        const link = hdr.querySelector('span[style*="margin-left:auto"]');
+        if (link) link.textContent = collapsed ? '▼ expand' : '▲ collapse';
+    }
+}
+
+// Scroll-to group
+function scrollToGroup(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Live search
+function zapSearch(q) {
+    q = q.toLowerCase().trim();
+    const groups = new Set();
+    document.querySelectorAll('.zap-row').forEach(row => {
+        const txt = row.textContent.toLowerCase();
+        const show = !q || txt.includes(q);
+        row.style.display = show ? '' : 'none';
+        const sev = row.dataset.sev;
+        if (show) groups.add(sev);
+        // also hide/show paired detail row
+        const idx = row.dataset.idx;
+        const det = document.getElementById('zd-' + idx);
+        if (det && !show) { det.style.display = 'none'; det.classList.remove('open'); }
+        if (det && show)  { det.style.display = det.classList.contains('open') ? '' : 'none'; }
+    });
+    // show/hide group headers depending on whether any rows in that group are visible
+    document.querySelectorAll('.zap-group-header').forEach(hdr => {
+        hdr.style.display = groups.has(hdr.dataset.group) ? '' : 'none';
+    });
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CVSS v3.1 CALCULATOR
+══════════════════════════════════════════════════════════════════ */
+const CVSS31={AV:{N:.85,A:.62,L:.55,P:.20},AC:{L:.77,H:.44},PR_U:{N:.85,L:.62,H:.27},PR_C:{N:.85,L:.68,H:.50},UI:{N:.85,R:.62},CIA:{N:.00,L:.22,H:.56}};
+function cvss31score(AV,AC,PR,UI,S,C,I,A){const av=CVSS31.AV[AV]||0,ac=CVSS31.AC[AC]||0,pr=(S==='C'?CVSS31.PR_C:CVSS31.PR_U)[PR]||0,ui=CVSS31.UI[UI]||0,ci=CVSS31.CIA[C]||0,ii=CVSS31.CIA[I]||0,ai=CVSS31.CIA[A]||0,iscBase=1-(1-ci)*(1-ii)*(1-ai),ISC=S==='C'?7.52*(iscBase-.029)-3.25*Math.pow(iscBase-.02,15):6.42*iscBase;if(ISC<=0)return 0;const ESC=8.22*av*ac*pr*ui,raw=S==='C'?Math.min(1.08*(ISC+ESC),10):Math.min(ISC+ESC,10);return Math.ceil(raw*10)/10;}
+function severityFromScore(s){if(s===0)return'None';if(s<=3.9)return'Low';if(s<=6.9)return'Medium';if(s<=8.9)return'High';return'Critical';}
+function buildVector(AV,AC,PR,UI,S,C,I,A){return`CVSS:3.1/AV:${AV}/AC:${AC}/PR:${PR}/UI:${UI}/S:${S}/C:${C}/I:${I}/A:${A}`;}
+function recalc(idx){const g=m=>document.getElementById(`m-${m}-${idx}`).value,AV=g('AV'),AC=g('AC'),PR=g('PR'),UI=g('UI'),S=g('S'),C=g('C'),I=g('I'),A=g('A'),score=cvss31score(AV,AC,PR,UI,S,C,I,A),sev=severityFromScore(score),vec=buildVector(AV,AC,PR,UI,S,C,I,A);document.getElementById(`score-num-${idx}`).textContent=score.toFixed(1);document.getElementById(`score-num-${idx}`).className='calc-score-num score-'+sev.toLowerCase();document.getElementById(`score-sev-${idx}`).textContent=sev;document.getElementById(`score-sev-${idx}`).className='calc-sev-badge badge badge-'+sev;document.getElementById(`score-vec-${idx}`).textContent=vec;}
+function resetCalc(idx,AV,AC,PR,UI,S,C,I,A){['AV','AC','PR','UI','S','C','I','A'].forEach((m,i)=>document.getElementById(`m-${m}-${idx}`).value=[AV,AC,PR,UI,S,C,I,A][i]);recalc(idx);}
+function toggleCalc(rowId){const row=document.getElementById(rowId),btn=document.getElementById('btn-'+rowId),o=row.classList.toggle('open');btn.classList.toggle('open',o);}
 </script>
 </body>
 </html>
