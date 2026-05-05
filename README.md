@@ -134,7 +134,6 @@ VulnScan Hybrid is intended strictly for **educational purposes** and **authoriz
 ### 🔹 Hadi Faheem (CyberReaper)
 -  Developer —VulnScan Hybrid
 - GitHub: [CyberReaper-1](https://github.com/CyberReaper-1)
-- Portfolio: [hadifaheemportfolio.netlify.app](https://hadifaheemportfolio.netlify.app)
 
 ### 🔹 Noor Fatima
 -Developer —VulnScan Hybrid
